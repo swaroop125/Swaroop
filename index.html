@@ -1,1 +1,972 @@
-<!-- temporary file -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Swaroop Thikane | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* ---------- Base Styles ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      color: #1a1a1a;
+      background: linear-gradient(135deg, #f3e8ff, #e9ecff);
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1, h2, h3, h4 {
+      color: #111827;
+    }
+
+    p, .section-subtitle {
+      color: #374151;
+    }
+
+    /* ---------- Layout ---------- */
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: #111827;
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ff9800, #ff4081);
+      box-shadow: 0 0 10px rgba(248, 180, 0, 0.8);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      opacity: 0.9;
+      color: #111827;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff9800, #ff4081);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      padding: 5rem 0 3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.95;
+      margin-bottom: 0.9rem;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.9);
+      color: #111827;
+    }
+
+    .pulse-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #16a34a;
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 5vw, 3.1rem);
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(90deg, #f97316, #ec4899);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle-main {
+      font-size: 1rem;
+      opacity: 0.98;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      max-width: 34rem;
+      line-height: 1.5;
+      margin-bottom: 1.3rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.55rem 1.35rem;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease,
+        opacity 0.18s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f97316, #ec4899);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(148, 27, 95, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(148, 27, 95, 0.45);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: #1f2933;
+    }
+
+    .btn-ghost:hover {
+      background: #e5edff;
+      transform: translateY(-1px);
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      opacity: 0.9;
+      flex-wrap: wrap;
+      color: #4b5563;
+    }
+
+    .hero-meta div span {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 600;
+      opacity: 0.95;
+      color: #111827;
+    }
+
+    /* Hero right (profile card) */
+    .hero-card {
+      border-radius: 1.8rem;
+      padding: 1.6rem;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      position: relative;
+      overflow: hidden;
+      color: #111827;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(252, 211, 77, 0.22), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .hero-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.1rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+      position: relative;
+      z-index: 1;
+      color: #f9fafb;
+    }
+
+    .hero-card-main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-card-role {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card-bio {
+      font-size: 0.85rem;
+      opacity: 0.95;
+      line-height: 1.5;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .chip {
+      font-size: 0.72rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(156, 163, 175, 0.9);
+      background: rgba(243, 244, 246, 0.95);
+      color: #374151;
+    }
+
+    .hero-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      opacity: 0.95;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      position: relative;
+      z-index: 1;
+      color: #111827;
+    }
+
+    .status-pill {
+      border-radius: 999px;
+      padding: 0.18rem 0.6rem;
+      background: rgba(187, 247, 208, 0.9);
+      border: 1px solid rgba(22, 163, 74, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      color: #166534;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #16a34a;
+    }
+
+    /* ---------- Sections ---------- */
+    section {
+      padding: 3.5rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      max-width: 26rem;
+    }
+
+    /* ---------- Resume Section ---------- */
+    .resume-wrapper {
+      display: grid;
+      grid-template-columns: 1.5fr 1.1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .resume-card,
+    .info-card {
+      border-radius: 1.4rem;
+      padding: 1.6rem;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+      color: #111827;
+    }
+
+    .resume-card h3,
+    .info-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .resume-timeline {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .resume-timeline li strong {
+      display: block;
+      margin-bottom: 0.1rem;
+      font-size: 0.9rem;
+      color: #111827;
+    }
+
+    .resume-timeline li span {
+      opacity: 0.9;
+      font-size: 0.78rem;
+      color: #4b5563;
+    }
+
+    .resume-download {
+      margin-top: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.85rem;
+      opacity: 0.95;
+      flex-wrap: wrap;
+      color: #374151;
+    }
+
+    .resume-download a {
+      white-space: nowrap;
+    }
+
+    /* ---------- Certificates Section ---------- */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.3rem;
+    }
+
+    .cert-card {
+      border-radius: 1.3rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease,
+        background 0.2s ease;
+      cursor: pointer;
+      color: #111827;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    .cert-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.16);
+      border-color: rgba(249, 115, 22, 0.8);
+      background: #fdfaf7;
+    }
+
+    .cert-top {
+      margin-bottom: 0.7rem;
+    }
+
+    .cert-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+      color: #111827;
+    }
+
+    .cert-org {
+      font-size: 0.8rem;
+      opacity: 0.95;
+      color: #4b5563;
+    }
+
+    .cert-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      opacity: 0.95;
+      margin-top: 0.4rem;
+      color: #4b5563;
+    }
+
+    .cert-link {
+      font-size: 0.8rem;
+      border-radius: 999px;
+      padding: 0.25rem 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background: rgba(248, 250, 252, 0.95);
+      text-decoration: none;
+      white-space: nowrap;
+      color: #111827;
+    }
+
+    .cert-tag {
+      font-size: 0.7rem;
+      border-radius: 999px;
+      padding: 0.15rem 0.55rem;
+      background: rgba(239, 246, 255, 0.95);
+      border: 1px solid rgba(129, 140, 248, 0.9);
+      color: #4338ca;
+    }
+
+    /* ---------- Footer / Contact ---------- */
+    footer {
+      padding: 2rem 0 2.5rem;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.6);
+      margin-top: 3rem;
+      color: #6b7280;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      opacity: 0.9;
+      color: #4b5563;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: #111827;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 4rem;
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .resume-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+
+      header {
+        padding-bottom: 0.3rem;
+      }
+
+      .hero {
+        padding-top: 3.7rem;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero-title {
+        font-size: 1.9rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .resume-download {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span>Swaroop Thikane</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#top" class="active">Home</a>
+        <a href="#resume">Resume</a>
+        <a href="#certificates">Certificates</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="container">
+    <section class="hero">
+      <div>
+        <div class="hero-tag">
+          <span class="pulse-dot"></span>
+          <span>Open to Opportunities</span>
+        </div>
+        <h1 class="hero-title">
+          Hi, I'm <span class="highlight">Swaroop Thikane</span>
+        </h1>
+        <p class="hero-subtitle-main">
+          B.Tech Electronics & Telecommunication Engineering Student · IoT & Embedded Systems Enthusiast
+        </p>
+        <p class="hero-subtitle">
+          I build practical engineering solutions like smart bags, IoT-based pearl farm health regulators,
+          agricultural robots, and filament makers. I’ve worked with GSM, GPS, RFID, motor control, IoT
+          systems and have secured a TIH Chanakya Fellowship and patent recognitions for my work.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="assets/resume.pdf" class="btn btn-primary" target="_blank">
+            View Resume (PDF)
+          </a>
+          <a href="#certificates" class="btn btn-ghost">
+            View Certificates & Achievements
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <div>
+            <span>Profile</span>
+            Electronics & Telecommunication Engineering
+          </div>
+          <div>
+            <span>Location</span>
+            Abdul Lat, Maharashtra, India
+          </div>
+          <div>
+            <span>Contact</span>
+            9766560792 · swaroopthikane@gmail.com
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-avatar">
+          S
+        </div>
+
+        <div class="hero-card-main">
+          <div class="hero-card-title">About Me</div>
+          <div class="hero-card-role">IoT & Embedded Systems | Student Leader</div>
+          <p class="hero-card-bio">
+            I’m an Electronics & Telecommunication Engineering student exploring IoT, embedded systems,
+            power electronics, and automation. I’ve led student bodies like IEEE SB (Treasurer) and COMSA
+            (President), while working on funded projects, patents, and research papers.
+          </p>
+
+          <div class="hero-card-tags">
+            <span class="chip">IoT</span>
+            <span class="chip">Embedded Systems</span>
+            <span class="chip">Prototyping</span>
+            <span class="chip">Leadership</span>
+            <span class="chip">Patents & Research</span>
+          </div>
+        </div>
+
+        <div class="hero-card-footer">
+          <div>
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              Open to internships & projects
+            </div>
+          </div>
+          <div>
+            <span style="font-weight: 600;">Email</span><br />
+            swaroopthikane@gmail.com
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Resume</h2>
+        </div>
+        <p class="section-subtitle">
+          Snapshot of my education, projects and experience. Download the full resume for complete details.
+        </p>
+      </div>
+
+      <div class="resume-wrapper">
+        <div class="resume-card">
+          <h3>Highlights</h3>
+          <ul class="resume-timeline">
+            <li>
+              <strong>B.Tech: Electronics & Telecommunication Engineering</strong>
+              <span>D.K.T.E’s Textile & Engineering Institute · CGPA: 7.82 · Expected Graduation: 2026</span>
+            </li>
+            <li>
+              <strong>Key Projects</strong>
+              <span>
+                Smart Bag · Filament Maker · IoT Based Pearl Farm Health Regulator · KrishiCobot (Agri-assistive robot)
+              </span>
+            </li>
+            <li>
+              <strong>Leadership</strong>
+              <span>IEEE SB Chapter – Treasurer · COMSA – President</span>
+            </li>
+            <li>
+              <strong>Internship</strong>
+              <span>Kulkarni Power Tools Ltd. – Worked on power electronics & IGBT-based welding machines</span>
+            </li>
+            <li>
+              <strong>Research & Publications</strong>
+              <span>
+                “IoT Based Pearl Farm Health Regulator” – Provisionally accepted in ICFT 2025 (IEEE) and ETET 2025 (SCOPUS)
+              </span>
+            </li>
+            <li>
+              <strong>Technical Skills</strong>
+              <span>C/C++, Embedded C, Java, Verilog & VHDL, DSA, Prototyping, IoT</span>
+            </li>
+          </ul>
+
+          <div class="resume-download">
+            <p>View or download my full resume for more details on projects, experience, and skills.</p>
+            <a href="assets/resume.pdf" class="btn btn-primary" target="_blank">Download Resume PDF</a>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>Contact & Links</h3>
+          <p style="font-size: 0.86rem; opacity: 0.9; margin-bottom: 0.8rem;">
+            Feel free to reach out for internships, collaborations or project discussions.
+          </p>
+          <ul
+            style="
+              list-style: none;
+              display: flex;
+              flex-direction: column;
+              gap: 0.4rem;
+              font-size: 0.86rem;
+            "
+          >
+            <li><strong>Name:</strong> Swaroop Thikane</li>
+            <li><strong>Phone:</strong> 9766560792</li>
+            <li><strong>Email:</strong> swaroopthikane@gmail.com</li>
+            <li><strong>LinkedIn:</strong> 
+              <a href="https://www.linkedin.com/in/swaroop-thikane-46a846296" target="_blank">
+                linkedin.com/in/swaroop-thikane-46a846296
+              </a>
+            </li>
+            <li><strong>Location:</strong> Abdul Lat, Maharashtra, 416143</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Certificates & Achievements</h2>
+        </div>
+        <p class="section-subtitle">
+          A selection of my certifications, training, fellowship, patents and competition results.
+        </p>
+      </div>
+
+      <div class="cert-grid">
+        <!-- Certification 1 -->
+        <article class="cert-card" onclick="openCertificate('certificates/iot-iitb.pdf')">
+          <div class="cert-top">
+            <div class="cert-title">Introduction to Internet of Things</div>
+            <div class="cert-org">IIT Bombay</div>
+          </div>
+          <div class="cert-meta">
+            <span>Mode: Online</span>
+            <span class="cert-tag">Certification</span>
+          </div>
+          <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end;">
+            <span class="cert-link">View Certificate →</span>
+          </div>
+        </article>
+
+        <!-- Certification 2 -->
+        <article class="cert-card" onclick="openCertificate('certificates/principles-of-management-nptel.pdf')">
+          <div class="cert-top">
+            <div class="cert-title">Principles of Management</div>
+            <div class="cert-org">NPTEL</div>
+          </div>
+          <div class="cert-meta">
+            <span>Mode: Online</span>
+            <span class="cert-tag">Certification</span>
+          </div>
+          <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end;">
+            <span class="cert-link">View Certificate →</span>
+          </div>
+        </article>
+
+        <!-- Certification 3 -->
+        <article class="cert-card" onclick="openCertificate('certificates/cla-c-programming.pdf')">
+          <div class="cert-top">
+            <div class="cert-title">CLA Programming Essentials in C</div>
+            <div class="cert-org">Certification Program</div>
+          </div>
+          <div class="cert-meta">
+            <span>Completed</span>
+            <span class="cert-tag">C Programming</span>
+          </div>
+          <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end;">
+            <span class="cert-link">View Certificate →</span>
+          </div>
+        </article>
+
+        <!-- Certification 4 / Industrial Training -->
+        <article class="cert-card" onclick="openCertificate('certificates/industrial-training-kpt.pdf')">
+          <div class="cert-top">
+            <div class="cert-title">Industrial Training</div>
+            <div class="cert-org">Kulkarni Power Tools Ltd.</div>
+          </div>
+          <div class="cert-meta">
+            <span>Power Electronics · IGBT Welding Machines</span>
+            <span class="cert-tag">Training</span>
+          </div>
+          <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end;">
+            <span class="cert-link">View Certificate →</span>
+          </div>
+        </article>
+
+        <!-- Achievement 1 -->
+        <article class="cert-card" onclick="openCertificate('certificates/tih-chanakya-fellowship.pdf')">
+          <div class="cert-top">
+            <div class="cert-title">TIH-IoT Chanakya Fellowship Program 2024</div>
+            <div class="cert-org">Fellowship of ₹6,00,000 for IoT Based Pearl Farm Health Regulator</div>
+          </div>
+          <div class="cert-meta">
+            <span>Innovation · Funding</span>
+            <span class="cert-tag">Fellowship</span>
+          </div>
+          <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end;">
+            <span class="cert-link">View Document →</span>
+          </div>
+        </article>
+
+        <!-- Achievement 2 -->
+        <article class="cert-card" onclick="openCertificate('certificates/design-patent-pearl-farming.pdf')">
+          <div class="cert-top">
+            <div class="cert-title">Design Patent Granted</div>
+            <div class="cert-org">IoT Based Pearl Farming Device · Design No. 454051-001</div>
+          </div>
+          <div class="cert-meta">
+            <span>Patent Status: Granted</span>
+            <span class="cert-tag">Patent</span>
+          </div>
+          <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end;">
+            <span class="cert-link">View Patent →</span>
+          </div>
+        </article>
+
+        <!-- Achievement 3 -->
+        <article class="cert-card" onclick="openCertificate('certificates/utility-patent-smart-bag.pdf')">
+          <div class="cert-top">
+            <div class="cert-title">Utility Patent Published</div>
+            <div class="cert-org">
+              Smart Bag System for Enhanced Safety, Organisation and Educational Engagement
+            </div>
+          </div>
+          <div class="cert-meta">
+            <span>Application No. 202421041453</span>
+            <span class="cert-tag">Patent</span>
+          </div>
+          <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end;">
+            <span class="cert-link">View Patent →</span>
+          </div>
+        </article>
+
+        <!-- Achievement 4 -->
+        <article class="cert-card" onclick="openCertificate('certificates/competitions.pdf')">
+          <div class="cert-top">
+            <div class="cert-title">Competition Achievements</div>
+            <div class="cert-org">
+              Mini Project Competition 2023–24 (Winner) · NRiT Ideathon (Finalist) · Ideathon by DKTE (Winner) · Best Idea Presenter
+            </div>
+          </div>
+          <div class="cert-meta">
+            <span>Projects & Ideation</span>
+            <span class="cert-tag">Awards</span>
+          </div>
+          <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end;">
+            <span class="cert-link">View Certificates →</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Swaroop Thikane. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Small JS for certificates + year + active nav -->
+  <script>
+    // Dynamic year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Open certificate in new tab
+    function openCertificate(path) {
+      window.open(path, "_blank");
+    }
+
+    // Highlight active nav link based on scroll
+    const sections = document.querySelectorAll("main section[id]");
+    const navLinks = document.querySelectorAll(".nav-links a");
+
+    function onScroll() {
+      const scrollPos = window.scrollY + 120;
+      let currentId = "top";
+
+      sections.forEach((sec) => {
+        if (scrollPos >= sec.offsetTop) {
+          currentId = sec.id;
+        }
+      });
+
+      navLinks.forEach((link) => {
+        const hrefId = link.getAttribute("href").replace("#", "");
+        if (hrefId === currentId) {
+          link.classList.add("active");
+        } else if (hrefId !== "top" || currentId === "top") {
+          link.classList.remove("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", onScroll);
+  </script>
+</body>
+</html>
