@@ -17,8 +17,39 @@
     body {
       min-height: 100vh;
       color: #1a1a1a;
-      background: linear-gradient(135deg, #f3e8ff, #e9ecff);
-      background-attachment: fixed;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Animated background particles */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
     }
 
     a {
@@ -39,15 +70,18 @@
       width: 90%;
       max-width: 1100px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(18px);
-      background: rgba(255, 255, 255, 0.9);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.5);
+      backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(255, 255, 255, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 
     .nav {
@@ -65,6 +99,11 @@
       align-items: center;
       gap: 0.3rem;
       color: #111827;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .logo-dot {
@@ -72,7 +111,13 @@
       height: 8px;
       border-radius: 999px;
       background: linear-gradient(135deg, #ff9800, #ff4081);
-      box-shadow: 0 0 10px rgba(248, 180, 0, 0.8);
+      box-shadow: 0 0 20px rgba(255, 64, 129, 0.8);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255, 64, 129, 0.8); transform: scale(1); }
+      50% { box-shadow: 0 0 30px rgba(255, 64, 129, 1); transform: scale(1.2); }
     }
 
     .nav-links {
@@ -85,29 +130,33 @@
       position: relative;
       opacity: 0.9;
       color: #111827;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
     }
 
     .nav-links a::after {
       content: "";
       position: absolute;
-      left: 0;
-      bottom: -4px;
+      left: 50%;
+      bottom: 0;
       width: 0;
       height: 2px;
       border-radius: 999px;
       background: linear-gradient(90deg, #ff9800, #ff4081);
-      transition: width 0.2s ease;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
     }
 
     .nav-links a:hover {
       opacity: 1;
-      transform: translateY(-1px);
+      background: rgba(255, 152, 0, 0.1);
+      transform: translateY(-2px);
     }
 
     .nav-links a:hover::after,
     .nav-links a.active::after {
-      width: 100%;
+      width: 70%;
     }
 
     /* ---------- Hero Section ---------- */
@@ -123,17 +172,23 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.2rem 0.7rem;
+      padding: 0.3rem 0.9rem;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      opacity: 0.95;
       margin-bottom: 0.9rem;
       backdrop-filter: blur(10px);
       background: rgba(255, 255, 255, 0.9);
       color: #111827;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      animation: slideInDown 0.6s ease-out;
+    }
+
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .pulse-dot {
@@ -142,15 +197,15 @@
       border-radius: 999px;
       background: #16a34a;
       box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-      animation: pulse 2s infinite;
+      animation: pulse-ring 2s infinite;
     }
 
-    @keyframes pulse {
+    @keyframes pulse-ring {
       0% {
         box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
       }
       70% {
-        box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+        box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
       }
       100% {
         box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
@@ -161,18 +216,33 @@
       font-size: clamp(2.3rem, 5vw, 3.1rem);
       line-height: 1.1;
       margin-bottom: 0.6rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .hero-title span.highlight {
-      background: linear-gradient(90deg, #f97316, #ec4899);
+      background: linear-gradient(135deg, #f97316, #ec4899, #8b5cf6);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
+      background-clip: text;
       color: transparent;
+      animation: gradientText 3s ease infinite;
+    }
+
+    @keyframes gradientText {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
     .hero-subtitle-main {
       font-size: 1rem;
       opacity: 0.98;
       margin-bottom: 0.3rem;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
     }
 
     .hero-subtitle {
@@ -181,48 +251,77 @@
       max-width: 34rem;
       line-height: 1.5;
       margin-bottom: 1.3rem;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
     }
 
     .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 0.8rem;
+      animation: fadeInUp 0.8s ease-out 0.8s both;
     }
 
     .btn {
       border-radius: 999px;
-      padding: 0.55rem 1.35rem;
+      padding: 0.6rem 1.5rem;
       font-size: 0.9rem;
       border: none;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease,
-        opacity 0.18s ease;
+      transition: all 0.3s ease;
       text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn > * {
+      position: relative;
+      z-index: 1;
     }
 
     .btn-primary {
       background: linear-gradient(135deg, #f97316, #ec4899);
       color: #fff;
-      box-shadow: 0 8px 20px rgba(148, 27, 95, 0.35);
+      box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
     }
 
     .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 25px rgba(148, 27, 95, 0.45);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(236, 72, 153, 0.5);
     }
 
     .btn-ghost {
       background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.7);
+      border: 2px solid rgba(148, 163, 184, 0.7);
       color: #1f2933;
+      backdrop-filter: blur(10px);
     }
 
     .btn-ghost:hover {
-      background: #e5edff;
-      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 1);
+      border-color: #f97316;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
 
     .hero-meta {
@@ -233,6 +332,7 @@
       opacity: 0.9;
       flex-wrap: wrap;
       color: #4b5563;
+      animation: fadeInUp 0.8s ease-out 1s both;
     }
 
     .hero-meta div span {
@@ -245,42 +345,78 @@
 
     /* Hero right (profile card) */
     .hero-card {
-      border-radius: 1.8rem;
-      padding: 1.6rem;
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.12);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
       display: flex;
       flex-direction: column;
       gap: 1.1rem;
       position: relative;
       overflow: hidden;
       color: #111827;
+      animation: fadeInRight 0.8s ease-out 0.4s both;
+      transition: transform 0.3s ease;
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .hero-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
     }
 
     .hero-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top right, rgba(252, 211, 77, 0.22), transparent 55%);
+      background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.15), transparent 60%);
       opacity: 0.9;
       pointer-events: none;
     }
 
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shimmer 3s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
     .hero-avatar {
-      width: 70px;
-      height: 70px;
+      width: 75px;
+      height: 75px;
       border-radius: 22px;
-      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+      background-size: 200% 200%;
+      animation: gradientShift 5s ease infinite;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.1rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
       position: relative;
       z-index: 1;
       color: #f9fafb;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-avatar:hover {
+      transform: rotate(5deg) scale(1.05);
     }
 
     .hero-card-main {
@@ -310,17 +446,26 @@
     .hero-card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.35rem;
+      gap: 0.4rem;
       margin-bottom: 0.8rem;
     }
 
     .chip {
       font-size: 0.72rem;
-      padding: 0.18rem 0.6rem;
+      padding: 0.25rem 0.7rem;
       border-radius: 999px;
       border: 1px solid rgba(156, 163, 175, 0.9);
       background: rgba(243, 244, 246, 0.95);
       color: #374151;
+      transition: all 0.3s ease;
+    }
+
+    .chip:hover {
+      background: linear-gradient(135deg, #f97316, #ec4899);
+      color: white;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
     }
 
     .hero-card-footer {
@@ -338,13 +483,19 @@
 
     .status-pill {
       border-radius: 999px;
-      padding: 0.18rem 0.6rem;
+      padding: 0.25rem 0.7rem;
       background: rgba(187, 247, 208, 0.9);
       border: 1px solid rgba(22, 163, 74, 0.6);
       display: inline-flex;
       align-items: center;
       gap: 0.25rem;
       color: #166534;
+      animation: pulse-pill 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-pill {
+      0%, 100% { box-shadow: 0 0 0 rgba(22, 163, 74, 0.4); }
+      50% { box-shadow: 0 0 15px rgba(22, 163, 74, 0.6); }
     }
 
     .status-dot {
@@ -352,6 +503,7 @@
       height: 7px;
       border-radius: 999px;
       background: #16a34a;
+      animation: pulse-ring 2s infinite;
     }
 
     /* ---------- Sections ---------- */
@@ -366,11 +518,25 @@
       gap: 0.8rem;
       justify-content: space-between;
       flex-wrap: wrap;
+      animation: fadeInUp 0.6s ease-out;
     }
 
     .section-title {
       font-size: 1.4rem;
       font-weight: 600;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #f97316, #ec4899);
+      border-radius: 999px;
     }
 
     .section-subtitle {
@@ -389,18 +555,40 @@
 
     .resume-card,
     .info-card {
-      border-radius: 1.4rem;
-      padding: 1.6rem;
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+      border-radius: 1.6rem;
+      padding: 1.8rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
       color: #111827;
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .resume-card:hover,
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
     }
 
     .resume-card h3,
     .info-card h3 {
       font-size: 1.05rem;
       margin-bottom: 0.8rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .resume-card h3::after,
+    .info-card h3::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, #f97316, #ec4899);
+      border-radius: 999px;
     }
 
     .resume-timeline {
@@ -409,6 +597,28 @@
       flex-direction: column;
       gap: 1rem;
       font-size: 0.85rem;
+    }
+
+    .resume-timeline li {
+      padding-left: 1.2rem;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .resume-timeline li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.4rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f97316, #ec4899);
+      box-shadow: 0 0 10px rgba(249, 115, 22, 0.6);
+    }
+
+    .resume-timeline li:hover {
+      transform: translateX(5px);
     }
 
     .resume-timeline li strong {
@@ -443,35 +653,64 @@
     /* ---------- Certificates Section ---------- */
     .cert-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1.3rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
     }
 
     .cert-card {
-      border-radius: 1.3rem;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      min-height: 150px;
+      border-radius: 1.4rem;
+      padding: 1.2rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      min-height: 160px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease,
-        background 0.2s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
       color: #111827;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.6s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .cert-card:nth-child(1) { animation-delay: 0.1s; }
+    .cert-card:nth-child(2) { animation-delay: 0.2s; }
+    .cert-card:nth-child(3) { animation-delay: 0.3s; }
+    .cert-card:nth-child(4) { animation-delay: 0.4s; }
+    .cert-card:nth-child(5) { animation-delay: 0.5s; }
+    .cert-card:nth-child(6) { animation-delay: 0.6s; }
+    .cert-card:nth-child(7) { animation-delay: 0.7s; }
+    .cert-card:nth-child(8) { animation-delay: 0.8s; }
+
+    .cert-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .cert-card:hover::before {
+      left: 100%;
     }
 
     .cert-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.16);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(249, 115, 22, 0.3);
       border-color: rgba(249, 115, 22, 0.8);
-      background: #fdfaf7;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(254, 243, 199, 0.3));
     }
 
     .cert-top {
       margin-bottom: 0.7rem;
+      position: relative;
+      z-index: 1;
     }
 
     .cert-title {
@@ -495,37 +734,56 @@
       opacity: 0.95;
       margin-top: 0.4rem;
       color: #4b5563;
+      position: relative;
+      z-index: 1;
     }
 
     .cert-link {
       font-size: 0.8rem;
       border-radius: 999px;
-      padding: 0.25rem 0.7rem;
+      padding: 0.3rem 0.8rem;
       border: 1px solid rgba(148, 163, 184, 0.9);
       background: rgba(248, 250, 252, 0.95);
       text-decoration: none;
       white-space: nowrap;
       color: #111827;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cert-card:hover .cert-link {
+      background: linear-gradient(135deg, #f97316, #ec4899);
+      color: white;
+      border-color: transparent;
+      transform: scale(1.05);
     }
 
     .cert-tag {
       font-size: 0.7rem;
       border-radius: 999px;
-      padding: 0.15rem 0.55rem;
+      padding: 0.2rem 0.6rem;
       background: rgba(239, 246, 255, 0.95);
       border: 1px solid rgba(129, 140, 248, 0.9);
       color: #4338ca;
+      transition: all 0.3s ease;
+    }
+
+    .cert-card:hover .cert-tag {
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: white;
+      border-color: transparent;
     }
 
     /* ---------- Footer / Contact ---------- */
     footer {
       padding: 2rem 0 2.5rem;
       font-size: 0.8rem;
-      border-top: 1px solid rgba(148, 163, 184, 0.6);
+      border-top: 2px solid rgba(255, 255, 255, 0.3);
       margin-top: 3rem;
-      color: #6b7280;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
+      color: #1f2937;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
     }
 
     .footer-inner {
@@ -545,11 +803,16 @@
     .footer-links a {
       opacity: 0.9;
       color: #4b5563;
+      transition: all 0.3s ease;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
     }
 
     .footer-links a:hover {
       opacity: 1;
       color: #111827;
+      background: rgba(249, 115, 22, 0.1);
+      transform: translateY(-2px);
     }
 
     /* ---------- Responsive ---------- */
@@ -585,6 +848,10 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0.3rem;
+      }
+
+      .cert-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -637,16 +904,16 @@
         </p>
         <p class="hero-subtitle">
           I build practical engineering solutions like smart bags, IoT-based pearl farm health regulators,
-          agricultural robots, and filament makers. I’ve worked with GSM, GPS, RFID, motor control, IoT
+          agricultural robots, and filament makers. I've worked with GSM, GPS, RFID, motor control, IoT
           systems and have secured a TIH Chanakya Fellowship and patent recognitions for my work.
         </p>
 
         <div class="hero-buttons">
           <a href="assets/resume.pdf" class="btn btn-primary" target="_blank">
-            View Resume (PDF)
+            <span>View Resume (PDF)</span>
           </a>
           <a href="#certificates" class="btn btn-ghost">
-            View Certificates & Achievements
+            <span>View Certificates & Achievements</span>
           </a>
         </div>
 
@@ -675,8 +942,8 @@
           <div class="hero-card-title">About Me</div>
           <div class="hero-card-role">IoT & Embedded Systems | Student Leader</div>
           <p class="hero-card-bio">
-            I’m an Electronics & Telecommunication Engineering student exploring IoT, embedded systems,
-            power electronics, and automation. I’ve led student bodies like IEEE SB (Treasurer) and COMSA
+            I'm an Electronics & Telecommunication Engineering student exploring IoT, embedded systems,
+            power electronics, and automation. I've led student bodies like IEEE SB (Treasurer) and COMSA
             (President), while working on funded projects, patents, and research papers.
           </p>
 
@@ -721,7 +988,7 @@
           <ul class="resume-timeline">
             <li>
               <strong>B.Tech: Electronics & Telecommunication Engineering</strong>
-              <span>D.K.T.E’s Textile & Engineering Institute · CGPA: 7.82 · Expected Graduation: 2026</span>
+              <span>D.K.T.E's Textile & Engineering Institute · CGPA: 7.82 · Expected Graduation: 2026</span>
             </li>
             <li>
               <strong>Key Projects</strong>
@@ -740,7 +1007,7 @@
             <li>
               <strong>Research & Publications</strong>
               <span>
-                “IoT Based Pearl Farm Health Regulator” – Provisionally accepted in ICFT 2025 (IEEE) and ETET 2025 (SCOPUS)
+                "IoT Based Pearl Farm Health Regulator" – Provisionally accepted in ICFT 2025 (IEEE) and ETET 2025 (SCOPUS)
               </span>
             </li>
             <li>
@@ -773,7 +1040,7 @@
             <li><strong>Phone:</strong> 9766560792</li>
             <li><strong>Email:</strong> swaroopthikane@gmail.com</li>
             <li><strong>LinkedIn:</strong> 
-              <a href="https://www.linkedin.com/in/swaroop-thikane-46a846296" target="_blank">
+              <a href="https://www.linkedin.com/in/swaroop-thikane-46a846296" target="_blank" style="color: #f97316;">
                 linkedin.com/in/swaroop-thikane-46a846296
               </a>
             </li>
