@@ -983,7 +983,7 @@
           </div>
           <div>
             <span>Contact</span>
-            9766560792 · swaroopthikane@gmail.com
+            9766560792 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="62111503100d0d12160a0b09030c0722050f030b0e4c010d0f">[email&#160;protected]</a>
           </div>
         </div>
       </div>
@@ -1020,7 +1020,7 @@
           </div>
           <div>
             <span style="font-weight: 600;">Email</span><br />
-            swaroopthikane@gmail.com
+            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="95e6e2f4e7fafae5e1fdfcfef4fbf0d5f2f8f4fcf9bbf6faf8">[email&#160;protected]</a>
           </div>
         </div>
       </aside>
@@ -1093,7 +1093,7 @@
           >
             <li><strong>Name:</strong> Swaroop Thikane</li>
             <li><strong>Phone:</strong> 9766560792</li>
-            <li><strong>Email:</strong> swaroopthikane@gmail.com</li>
+            <li><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="45363224372a2a35312d2c2e242b20052228242c296b262a28">[email&#160;protected]</a></li>
             <li><strong>LinkedIn:</strong> 
               <a href="https://www.linkedin.com/in/swaroop-thikane-46a846296" target="_blank" style="color: #f97316;">
                 linkedin.com/in/swaroop-thikane-46a846296
@@ -1257,7 +1257,13 @@
             <span>DOI: 10.1109/ICFT&#8203;2025</span>
             <span class="cert-tag ieee-tag">IEEE Publication</span>
           </div>
-          <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end;">
+          <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end; gap: 0.5rem; flex-wrap: wrap;">
+            <a
+              href="certificates/130.pdf"
+              target="_blank"
+              class="cert-link"
+              onclick="event.stopPropagation()"
+            >View Certificate →</a>
             <a
               href="https://ieeexplore.ieee.org/document/11336776"
               target="_blank"
@@ -1282,7 +1288,7 @@
   </footer>
 
   <!-- Small JS for certificates + year + active nav -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Dynamic year
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -1299,23 +1305,4 @@
       const scrollPos = window.scrollY + 120;
       let currentId = "top";
 
-      sections.forEach((sec) => {
-        if (scrollPos >= sec.offsetTop) {
-          currentId = sec.id;
-        }
-      });
-
-      navLinks.forEach((link) => {
-        const hrefId = link.getAttribute("href").replace("#", "");
-        if (hrefId === currentId) {
-          link.classList.add("active");
-        } else if (hrefId !== "top" || currentId === "top") {
-          link.classList.remove("active");
-        }
-      });
-    }
-
-    window.addEventListener("scroll", onScroll);
-  </script>
-</body>
-</html>
+      sections.forEach((s
