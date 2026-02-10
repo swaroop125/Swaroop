@@ -684,6 +684,7 @@
     .cert-card:nth-child(6) { animation-delay: 0.6s; }
     .cert-card:nth-child(7) { animation-delay: 0.7s; }
     .cert-card:nth-child(8) { animation-delay: 0.8s; }
+    .cert-card:nth-child(9) { animation-delay: 0.9s; }
 
     .cert-card::before {
       content: "";
@@ -705,6 +706,13 @@
       box-shadow: 0 20px 50px rgba(249, 115, 22, 0.3);
       border-color: rgba(249, 115, 22, 0.8);
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(254, 243, 199, 0.3));
+    }
+
+    /* Special hover style for IEEE card */
+    .cert-card.ieee-card:hover {
+      box-shadow: 0 20px 50px rgba(0, 100, 200, 0.3);
+      border-color: rgba(0, 100, 200, 0.7);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(219, 234, 254, 0.4));
     }
 
     .cert-top {
@@ -759,6 +767,14 @@
       transform: scale(1.05);
     }
 
+    /* IEEE card link has its own hover color */
+    .cert-card.ieee-card:hover .cert-link {
+      background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+      color: white;
+      border-color: transparent;
+      transform: scale(1.05);
+    }
+
     .cert-tag {
       font-size: 0.7rem;
       border-radius: 999px;
@@ -773,6 +789,45 @@
       background: linear-gradient(135deg, #8b5cf6, #6366f1);
       color: white;
       border-color: transparent;
+    }
+
+    /* IEEE-specific tag style */
+    .cert-tag.ieee-tag {
+      background: rgba(219, 234, 254, 0.95);
+      border: 1px solid rgba(59, 130, 246, 0.9);
+      color: #1d4ed8;
+    }
+
+    .cert-card.ieee-card:hover .cert-tag.ieee-tag {
+      background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+      color: white;
+      border-color: transparent;
+    }
+
+    /* IEEE badge inside the card */
+    .ieee-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #1d4ed8;
+      background: rgba(219, 234, 254, 0.9);
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      margin-top: 0.4rem;
+      width: fit-content;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ieee-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #1d4ed8;
+      animation: pulse-ring 2s infinite;
     }
 
     /* ---------- Footer / Contact ---------- */
@@ -1007,7 +1062,7 @@
             <li>
               <strong>Research & Publications</strong>
               <span>
-                "IoT Based Pearl Farm Health Regulator" – Provisionally accepted in ICFT 2025 (IEEE) and ETET 2025 (SCOPUS)
+                "IoT Based Pearl Farm Health Regulator" – Published in IEEE Xplore (ICFT 2025) · Provisionally accepted in ETET 2025 (SCOPUS)
               </span>
             </li>
             <li>
@@ -1185,6 +1240,33 @@
             <span class="cert-link">View Certificates →</span>
           </div>
         </article>
+
+        <!-- ✦ NEW: IEEE Xplore Publication -->
+        <article class="cert-card ieee-card" onclick="window.open('https://ieeexplore.ieee.org/document/11336776', '_blank')">
+          <div class="cert-top">
+            <div class="cert-title">Research Paper Published on IEEE Xplore</div>
+            <div class="cert-org">
+              IoT Based Pearl Farm Health Regulator · ICFT 2025
+            </div>
+            <div class="ieee-badge">
+              <span class="ieee-dot"></span>
+              Published on IEEE Xplore
+            </div>
+          </div>
+          <div class="cert-meta">
+            <span>DOI: 10.1109/ICFT&#8203;2025</span>
+            <span class="cert-tag ieee-tag">IEEE Publication</span>
+          </div>
+          <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end;">
+            <a
+              href="https://ieeexplore.ieee.org/document/11336776"
+              target="_blank"
+              class="cert-link"
+              onclick="event.stopPropagation()"
+            >View on IEEE Xplore →</a>
+          </div>
+        </article>
+
       </div>
     </section>
   </main>
