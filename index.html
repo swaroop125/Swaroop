@@ -684,6 +684,7 @@
     .cert-card:nth-child(6) { animation-delay: 0.6s; }
     .cert-card:nth-child(7) { animation-delay: 0.7s; }
     .cert-card:nth-child(8) { animation-delay: 0.8s; }
+    .cert-card:nth-child(9) { animation-delay: 0.9s; }
 
     .cert-card::before {
       content: "";
@@ -773,6 +774,21 @@
       background: linear-gradient(135deg, #8b5cf6, #6366f1);
       color: white;
       border-color: transparent;
+    }
+
+    .cert-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.7rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cert-actions .cert-link {
+      flex: 1;
+      text-align: center;
+      font-size: 0.75rem;
+      padding: 0.35rem 0.6rem;
     }
 
     /* ---------- Footer / Contact ---------- */
@@ -1134,6 +1150,26 @@
           </div>
           <div style="margin-top: 0.7rem; display: flex; justify-content: flex-end;">
             <span class="cert-link">View Document →</span>
+          </div>
+        </article>
+
+        <!-- NEW: IEEE Publication -->
+        <article class="cert-card">
+          <div class="cert-top">
+            <div class="cert-title">IoT Based Pearl Farm Health Regulator</div>
+            <div class="cert-org">Published in IEEE Xplore</div>
+          </div>
+          <div class="cert-meta">
+            <span>Research Publication</span>
+            <span class="cert-tag">IEEE</span>
+          </div>
+          <div class="cert-actions">
+            <a href="certificates/130.pdf" class="cert-link" target="_blank" onclick="event.stopPropagation();">
+              View Certificate →
+            </a>
+            <a href="https://ieeexplore.ieee.org/document/11336776" class="cert-link" target="_blank" onclick="event.stopPropagation();">
+              View Paper →
+            </a>
           </div>
         </article>
 
